@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .form-control {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-content container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-wrapper">
+                    <div class="box">
+                        <div class="content-wrap">
+                            <h1>Log in</h1>
+                            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <input type="text" name="_username" placeholder="username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="_password" placeholder="password">
+                                </div>
+                                <button type="submit" class="btn btn-default" id="submit" onclick="location.href='@Url.Action("Login","Home")'">log in</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

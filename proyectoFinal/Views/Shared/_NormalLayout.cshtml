@@ -1,0 +1,63 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/Content/Bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <link rel="stylesheet" href="~/Content/toastr.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <title>@ViewBag.Title | Project</title>
+</head>
+<body>
+    <div class="container body-content">
+        <div class="container body-content">
+            <h1>Welcome, @ViewBag.nameLogged</h1>
+            <div class="page-content">
+                <div class="row">
+                    <!--Left nav-->
+                    <div class="col-md-3">
+                        <div class="sidebar content-box" style="display: block;">
+                            <ul class="nav">
+                                <!-- Main menu -->
+                                <li class="current"><a href="Dashboard"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>                                                       
+                                <!--my account-->
+                                <li class="submenu">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-user"></i> My Account
+                                        <span class="caret pull-right"></span>
+                                    </a>
+                                    <ul>
+                                        <li><a href="@Url.Action("Profile","Normal")">Profile</a></li>
+                                        <li><a href="@Url.Action("logout", "Normal")" style="color:#d83117">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Body-->
+                    <div class="col-md-9">
+                        <div class="content-box-large">
+                            <div class="panel-heading">
+                                <div class="panel-title"><h2>@ViewBag.selectMenu</h2></div>
+                            </div>
+                            <div class="panel-body">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; 2018 - giviApp</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+</body>
+</html>
+

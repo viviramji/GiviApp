@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_NormalLayout.cshtml";
+}
+<p>Here you can see all services assigned</p>
+@Html.Partial("serviceNormalPartial", Session["Services"])
+
+<script>
+    function updateService(_id) {
+        if (confirm('Would you like to change this service\'s status')) {            
+            var element = { id: _id }
+            console.log(element);
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                contentType: 'application/json; charset=utg-8',
+                url: "/Normal/updateService",
+                data: JSON.stringify({
+                    '_id': element
+                }),
+                error: function () {
+                    toastr.error('system Error, check your code (hint: check your .js \';)\' ) or re-debug your code', 'Eye!', {
+                        timeOut: 6000,
+                        positionClass: 'toast-top-full-width'
+                    });
+                },
+                success: function (data) {
+                    if (data.msg === "ok") {
+                        toastr.success('Service added', 'Good Job', {
+                            timeOut: 6000,
+                            positionClass: 'toast-top-full-width'
+                        });                        
+                        $("#servicePartialId").load("/Normal/getServices");
+                    }
+                    else {
+                        toastr.error("Backend error", "Eye!", {
+                            timeOut: 6000,
+                            positionClass: 'toast-top-full-width'
+                        });
+                    }
+                }
+            });
+        } else {
+            alert("you've canceld");
+        }
+        
+    }
+</script>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,311 @@
+﻿@model List<proyectoFinal.Models.User>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/Content/Bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <link rel="stylesheet" href="~/Content/toastr.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <title>@ViewBag.Title | Project</title>
+</head>
+<body>
+    <div class="container body-content">
+        <div class="container body-content">
+            <h1>Welcome, @ViewBag.nameLogged</h1>
+            <div class="page-content">
+                <div class="row">
+                    <!--Left nav-->
+                    <div class="col-md-3">
+                        <div class="sidebar content-box" style="display: block;">
+                            <ul class="nav">
+                                <!-- Main menu -->
+                                <li class="current"><a href="Dashboard"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                                <!--CRUD FOR USERS-->
+                                <li class="submenu">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-list"></i> Users
+                                        <span class="caret pull-right"></span>
+                                    </a>
+                                    <ul>
+                                        <li><a href="#addUserModal" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Add an user</a></li>
+                                        <li><a href="#addClientModal" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Add a client</a> </li>
+                                        <li><a href="#listUserModal" data-toggle="modal"><i class="glyphicon glyphicon-th"></i> List of users</a></li>
+                                        <li><a href="#listClientModal" data-toggle="modal"><i class="glyphicon glyphicon-th"></i> List of clients</a></li>
+                                    </ul>
+                                </li>
+                                <!--CRUD FOR Services-->
+                                <li class="submenu">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-list"></i> Services
+                                        <span class="caret pull-right"></span>
+                                    </a>
+                                    <ul>
+                                        <li><a href="#addServiceModal" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Add a service</a></li>
+                                        <li><a href="#deleteServiceModal" data-toggle="modal" style="color: #d83117"><i class="glyphicon glyphicon-trash"></i> Delete a service</a></li>
+                                    </ul>
+                                </li>
+                                <!--my account-->
+                                <li class="submenu">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-user"></i> My Account
+                                        <span class="caret pull-right"></span>
+                                    </a>
+                                    <ul>
+                                        <li><a href="@Url.Action("Profile","Admin")">Profile</a></li>
+                                        <li><a href="@Url.Action("logout", "Admin")" style="color:#d83117">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Body-->
+                    <div class="col-md-9">
+                        <div class="content-box-large">
+                            <div class="panel-heading">
+                                <div class="panel-title"><h2>@ViewBag.selectMenu</h2></div>
+                            </div>
+                            <div class="panel-body">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; 2018 - giviApp</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/userModal.js"></script>
+    <script src="~/Scripts/clientModal.js"></script>
+    <script src="~/Scripts/serviceModal.js"></script>
+    <script src="~/Scripts/deleteServiceModal.js"></script>
+    <!--<script src="~/Scripts/test.js"></script>-->
+
+</body>
+</html>
+
+<!-- Add User Modal-->
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="modelTitleId">Add an user</h3>
+            </div>
+            <div class="modal-body">
+                <!--this shoul be in a form!!!-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">User's ID</label>
+                            <input type="text" id="userID" maxlength="5" class="form-control" placeholder="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">First name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Victor Victor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="isbn">Last Name</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Ramos Jimenez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Email</label>
+                            <input type="text" id="email" class="form-control" placeholder="example@example.com" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="typeBook">Phone Number</label>
+                            <input type="text" id="phoneNumber" class="form-control" placeholder="3226072708" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeBook">City</label>
+                            <input type="text" id="city" class="form-control" placeholder="Cartagena" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeBook">Username</label>
+                            <input type="text" id="username" class="form-control" placeholder="me" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeBook">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="SuperSecret" required>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="typeService">User Type</label>
+                            <select class="custom-select form-control" id="typeUser">
+                                <option selected value="">Choose...</option>
+                                <option value="0">Administrator</option>
+                                <option value="1">Normal User</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addUser()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Client Modal -->
+<div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="modelTitleId">Add a client</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form id="addClientForm">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="clientID">Client's ID</label>
+                                <input type="text" id="clientID" maxlength="5" class="form-control" required placeholder="1">
+                            </div>
+                            <div class="form-group">
+                                <label for="companyName">Company name</label>
+                                <input type="text" id="companyName" class="form-control" placeholder="Bimbo" />
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone number</label>
+                                <input type="text" id="phone" class="form-control" placeholder="3462001" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" class="form-control" placeholder="Cll 75 #11 74">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" required id="emailC" class="form-control" placeholder="example@mycompany.com" />
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="cityC" class="form-control" placeholder="Cartagena" />
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" onclick="addClient()">Save</button>
+                </div>
+                </form>
+            </div>                
+        </div>
+    </div>
+</div>
+
+<!--Add service modal-->
+<div class="modal fade" id="addServiceModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="modelTitleId">Add a service</h3>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("serviceFormPartial", Session["Users"])
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- list users Modal -->
+<div class="modal fade" id="listUserModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="modelTitleId">list Users</h3>
+            </div>
+            <div class="modal-body">
+                <div id="listUsers">
+                    @Html.Partial("listUsersPartial", Session["Users"])
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- list clients Modal -->
+<div class="modal fade" id="listClientModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="modelTitleId">List Clients</h3>
+            </div>
+            <div class="modal-body">
+                <div id="listClients">
+                    @Html.Partial("listClientsPartial", Session["Clients"])
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Delete a service-->
+
+<div class="modal fade" id="deleteServiceModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="modelTitleId">Add a service</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="userIDService">Which service whould you like to delete?</label>
+                                <select class="custom-select form-control" id="deleteId" required>
+                                    <option selected>Choose</option>
+                                    @foreach (proyectoFinal.Models.Service s in (List<proyectoFinal.Models.Service>)Session["Services"])
+                                    {
+                                    <option value="@s.id">@s.id</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteService()">Delete it</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+</div>

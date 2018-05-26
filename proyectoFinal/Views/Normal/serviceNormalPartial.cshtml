@@ -1,0 +1,35 @@
+﻿<div id="servicePartialId">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Client</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Type Service</th>
+                <th>Created by</th>
+                <th>Assigned to</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (proyectoFinal.Models.Service s in (List<proyectoFinal.Models.Service>)Session["services"])
+            {
+                if (s.userID == (string)Session["username"])
+                {
+                    <tr>
+                        <td>@s.id</td>
+                        <td>@s.companyName</td>
+                        <td>@s.description</td>
+                        <td>@s.date</td>
+                        <td><a href="#updateModal" data-toggle="modal" value="test" onclick="updateService(@s.id)">@s.status</a></td>
+                        <td>@s.typeService</td>
+                        <td>@s.adminID</td>
+                        <td>@s.userID</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    p{
+        font-size: 15px;
+    }
+    label {
+        font-size: 18px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <label>First Name</label>
+            <p>@ViewBag.user.firstName</p>
+            <label>Last Name</label>
+            <p>@ViewBag.user.lastName</p>
+            <label>Email</label>
+            <p>@ViewBag.user.email</p>
+        </div>
+        <div class="col-md-6">
+            <label>Phone</label>
+            <p>@ViewBag.user.phoneNumber</p>
+            <label>City</label>
+            <p>@ViewBag.user.city</p>
+            <label>Type</label>
+            <p>@ViewBag.user.typeUser</p>
+        </div>
+    </div>    
+</div>
+

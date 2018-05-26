@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+@model List<proyectoFinal.Models.User>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Type User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(proyectoFinal.Models.User u in Model)
+        {
+            <tr>
+                <td>@u.firstName</td>
+                <td>@u.lastName</td>
+                <td>@u.username</td>
+                <td>@u.phoneNumber</td>
+                <td>@u.city</td>
+                <td>@u.typeUser</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

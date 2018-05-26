@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+
+@model List<proyectoFinal.Models.Client>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(proyectoFinal.Models.Client c in Model)
+        {
+        <tr>
+            <td>@c.id</td>
+            <td>@c.companyName</td>
+            <td>@c.phoneNumber</td>
+            <td>@c.email</td>
+            <td>@c.address</td>
+            <td>@c.city</td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<p>Here you can see all services assigned</p>
+<div id="servicePartialId">
+    @Html.Partial("ServicePartial", Session["services"])
+</div>
