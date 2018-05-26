@@ -1,6 +1,6 @@
 # GiviApp
 Final project for .NET development course
 
-#Team
+# Team
 + Victor Victor Ramos Jimenez
 + Giovanny Palencia Osorio
